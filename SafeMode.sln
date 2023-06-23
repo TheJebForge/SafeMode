@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{D55DF15B-FB96-4F81-ABB9-AD377C901312}") = "SafeMode", "SafeMode\SafeMode.csproj", "{C2A0249E-0D8C-498D-9A59-69F2A2CEFC8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2A0249E-0D8C-498D-9A59-69F2A2CEFC8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2A0249E-0D8C-498D-9A59-69F2A2CEFC8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2A0249E-0D8C-498D-9A59-69F2A2CEFC8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2A0249E-0D8C-498D-9A59-69F2A2CEFC8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
