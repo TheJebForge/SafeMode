@@ -5,6 +5,8 @@ A [NeosModLoader](https://github.com/zkxs/NeosModLoader) mod for [Neos VR](https
 Intended to be used as a way to be able to clean your avatar from any viruses that you could had saved from a public session (looking at you Tailroot -.-)
 ### Enabling this mod in public worlds might break various world systems like avatar culling, and anything that executes impulses from you
 
+#### Other people can still execute impulses and make things happen, just your client will not be able to run any impulses
+
 ![image](https://github.com/TheJebForge/SafeMode/assets/12719947/9ba1e9ce-c4fc-4ad0-ac7f-e42ea8324986)
 
 ## Installation
