@@ -16,7 +16,7 @@ namespace SafeMode
     {
         public override string Name => "SafeMode";
         public override string Author => "TheJebForge";
-        public override string Version => "1.0.0";
+        public override string Version => "1.0.1";
 
         [AutoRegisterConfigKey]
         readonly ModConfigurationKey<bool> ENABLED = new ModConfigurationKey<bool>("enabled","Safe Mode enabled", () => false);
@@ -25,6 +25,8 @@ namespace SafeMode
         private static SafeMode modInstance;
 
         bool IsModEnabled() => config.GetValue(ENABLED);
+
+        void DisableMod() => config.Set(ENABLED, false);
         
         public override void OnEngineInit()
         {
@@ -33,6 +35,15 @@ namespace SafeMode
             
             Harmony harmony = new Harmony($"net.{Author}.{Name}");
             harmony.PatchAll();
+        }
+
+        [HarmonyPatch(typeof(WorldManager), nameof(WorldManager.FocusWorld))]
+        class DisableOnSessionFocus
+        {
+            public static void Prefix()
+            {
+                modInstance.DisableMod();
+            }
         }
 
         [HarmonyPatch(typeof(Impulse), nameof(Impulse.Trigger))]
