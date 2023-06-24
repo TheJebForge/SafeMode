@@ -16,15 +16,20 @@ namespace SafeMode
     {
         public override string Name => "SafeMode";
         public override string Author => "TheJebForge";
-        public override string Version => "1.0.1";
+        public override string Version => "1.0.2";
 
         [AutoRegisterConfigKey]
         readonly ModConfigurationKey<bool> ENABLED = new ModConfigurationKey<bool>("enabled","Safe Mode enabled", () => false);
+        
+        [AutoRegisterConfigKey]
+        readonly ModConfigurationKey<bool> HOSTED_SESSION = new ModConfigurationKey<bool>("hosted_session","Don't auto-disable on sessions I host", () => false);
 
         private ModConfiguration config;
         private static SafeMode modInstance;
 
         bool IsModEnabled() => config.GetValue(ENABLED);
+        
+        bool DisableOnHostedSession() => !config.GetValue(HOSTED_SESSION);
 
         void DisableMod() => config.Set(ENABLED, false);
         
@@ -40,9 +45,16 @@ namespace SafeMode
         [HarmonyPatch(typeof(WorldManager), nameof(WorldManager.FocusWorld))]
         class DisableOnSessionFocus
         {
-            public static void Prefix()
+            public static void Prefix(World world)
             {
-                modInstance.DisableMod();
+                if (modInstance.DisableOnHostedSession())
+                {
+                    modInstance.DisableMod();
+                }
+                else if (world.LocalUser != world.HostUser)
+                {
+                    modInstance.DisableMod();
+                }
             }
         }
 
